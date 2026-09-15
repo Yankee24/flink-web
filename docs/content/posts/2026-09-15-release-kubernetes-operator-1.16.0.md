@@ -2,8 +2,8 @@
 title:  "Apache Flink Kubernetes Operator 1.16.0 Release Announcement"
 date: "2026-09-15T08:00:00.000Z"
 authors:
-- gyfora:
-  name: "Gyula Fora"
+  - dciupitu:
+    name: "Dennis-Mircea Ciupitu"
 aliases:
 - /news/2026/09/15/release-kubernetes-operator-1.16.0.html
 ---
