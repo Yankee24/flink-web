@@ -58,12 +58,6 @@ Two points are worth checking when upgrading:
 
 When overriding through `config.yaml`, prefer the nested YAML form. A flat, dotted-key override of a key that the chart already ships would be a duplicate key under Flink's strict YAML parser and fail at operator startup.
 
-### Runtime Configuration of Running Jobs
-
-The operator now reads a running job's effective configuration back from the cluster, through the JobManager configuration, job execution, and checkpoint config REST endpoints, and layers it over the spec-derived observed configuration.
-
-A spec is a request rather than a record of what a job ended up running with, since a job's main method can change settings programmatically and those take precedence over anything the operator submitted. The runtime configuration is fetched once per job id, cached per resource, and skipped for jobs in a globally terminal state. Keys in the operator's own namespaces are dropped from a job's global parameters, so a job cannot change how the operator manages it by declaring a matching parameter.
-
 ### Dependency and Toolchain Updates
 
 The operator is upgraded to **Java Operator SDK 5.5.0**, and the Helm chart CI and end-to-end tests now run on **Helm 4**.
@@ -126,8 +120,8 @@ The release notes can be found [here](https://issues.apache.org/jira/secure/Rele
 The source artifacts and helm chart are available on the Downloads page of the Flink website. You can easily try out the new features shipped in the official 1.16.0 release by adding the Helm chart to your own local registry:
 
 ```
-$ helm repo add flink-kubernetes-operator-1.16.0 https://archive.apache.org/dist/flink/flink-kubernetes-operator-1.16.0/
-$ helm install flink-kubernetes-operator flink-kubernetes-operator-1.16.0/flink-kubernetes-operator --set webhook.create=false
+$ helm repo add flink-kubernetes-operator-1.16.1 https://archive.apache.org/dist/flink/flink-kubernetes-operator-1.16.1/
+$ helm install flink-kubernetes-operator flink-kubernetes-operator-1.16.1/flink-kubernetes-operator --set webhook.create=false
 ```
 
 You can also find official Kubernetes Operator Docker images of the new version on [Dockerhub](https://hub.docker.com/r/apache/flink-kubernetes-operator).
