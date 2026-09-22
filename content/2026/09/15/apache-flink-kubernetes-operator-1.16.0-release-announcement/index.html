@@ -30,7 +30,7 @@ We encourage you to download the release and share your experience with the comm
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.22eceb4d17baa9cdc0f57345edd6f215a40474022dfee39b63befb5fb3c596b5.css" integrity="sha256-IuzrTRe6qc3A9XNF7dbyFaQEdAIt/uObY777X7PFlrU=">
-<script defer src="/en.search.min.fc5e170d1d48b36dcecbadff31b304530a523db2322b8987217227750d236d0d.js" integrity="sha256-/F4XDR1Is23Oy63/MbMEUwpSPbIyK4mHIXIndQ0jbQ0="></script>
+<script defer src="/en.search.min.89a1cccc41ec4d89142b1d3d2fb2ad9f97d074959a2c89537e6582a2aa2c2304.js" integrity="sha256-iaHMzEHsTYkUKx09L7Ktn5fQdJWaLIlTfmWCoqosIwQ="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -571,12 +571,6 @@ https://github.com/alex-shpak/hugo-book
 <li>Dynamic configuration updates made by editing the ConfigMap directly with <code>kubectl edit</code> or <code>kubectl patch</code> now belong under the <code>config.yaml</code> key.</li>
 </ul>
 <p>When overriding through <code>config.yaml</code>, prefer the nested YAML form. A flat, dotted-key override of a key that the chart already ships would be a duplicate key under Flink&rsquo;s strict YAML parser and fail at operator startup.</p>
-<h3 id="runtime-configuration-of-running-jobs">
-  Runtime Configuration of Running Jobs
-  <a class="anchor" href="#runtime-configuration-of-running-jobs">#</a>
-</h3>
-<p>The operator now reads a running job&rsquo;s effective configuration back from the cluster, through the JobManager configuration, job execution, and checkpoint config REST endpoints, and layers it over the spec-derived observed configuration.</p>
-<p>A spec is a request rather than a record of what a job ended up running with, since a job&rsquo;s main method can change settings programmatically and those take precedence over anything the operator submitted. The runtime configuration is fetched once per job id, cached per resource, and skipped for jobs in a globally terminal state. Keys in the operator&rsquo;s own namespaces are dropped from a job&rsquo;s global parameters, so a job cannot change how the operator manages it by declaring a matching parameter.</p>
 <h3 id="dependency-and-toolchain-updates">
   Dependency and Toolchain Updates
   <a class="anchor" href="#dependency-and-toolchain-updates">#</a>
@@ -659,8 +653,8 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#release-resources">#</a>
 </h2>
 <p>The source artifacts and helm chart are available on the Downloads page of the Flink website. You can easily try out the new features shipped in the official 1.16.0 release by adding the Helm chart to your own local registry:</p>
-<pre tabindex="0"><code>$ helm repo add flink-kubernetes-operator-1.16.0 https://archive.apache.org/dist/flink/flink-kubernetes-operator-1.16.0/
-$ helm install flink-kubernetes-operator flink-kubernetes-operator-1.16.0/flink-kubernetes-operator --set webhook.create=false
+<pre tabindex="0"><code>$ helm repo add flink-kubernetes-operator-1.16.1 https://archive.apache.org/dist/flink/flink-kubernetes-operator-1.16.1/
+$ helm install flink-kubernetes-operator flink-kubernetes-operator-1.16.1/flink-kubernetes-operator --set webhook.create=false
 </code></pre><p>You can also find official Kubernetes Operator Docker images of the new version on <a href="https://hub.docker.com/r/apache/flink-kubernetes-operator">Dockerhub</a>.</p>
 <p>For more details, check the <a href="https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.16/">updated documentation</a> and the release notes. We encourage you to download the release and share your feedback with the community through the Flink mailing lists or JIRA.</p>
 <h2 id="list-of-contributors">
@@ -706,7 +700,6 @@ $ helm install flink-kubernetes-operator flink-kubernetes-operator-1.16.0/flink-
             <li><a href="#autoscaler-extensibility-pluggable-evaluators-scaling-executors-and-alignment-modes">Autoscaler Extensibility: Pluggable Evaluators, Scaling Executors, and Alignment Modes</a></li>
             <li><a href="#kubernetes-native-pod-resource-requirements">Kubernetes-native Pod Resource Requirements</a></li>
             <li><a href="#operator-configuration-is-always-mounted-as-configyaml">Operator Configuration is Always Mounted as <code>config.yaml</code></a></li>
-            <li><a href="#runtime-configuration-of-running-jobs">Runtime Configuration of Running Jobs</a></li>
             <li><a href="#dependency-and-toolchain-updates">Dependency and Toolchain Updates</a></li>
             <li><a href="#supported-flink-versions">Supported Flink Versions</a></li>
           </ul>
